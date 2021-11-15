@@ -32,6 +32,13 @@ public class ChessMatch {
 		return mat;
 	}
 	
+	// method PossibleMoves
+	public boolean[][] possibleMoves(ChessPosition sourcePosition){
+		Position position = sourcePosition.toPosition();
+		validateSourcePosition(position);
+		return board.piece(position).PossibleMoves();
+	}
+	
 	// method performChessMove
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
 		Position source = sourcePosition.toPosition();
@@ -66,7 +73,7 @@ public class ChessMatch {
 	// method validateTargetPosition
 	private void validateTargetPosition(Position source, Position target) {
 		// defensive programming
-		if (!board.piece(source).possibleMove(target)) {
+		if (!board.piece(source).possibleMoves(target)) {
 			throw new ChessException("The choosen piece can't move to target position");
 		}
 		

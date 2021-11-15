@@ -21,16 +21,16 @@ public abstract class Piece {
 	}
 	
 	// method possibleMove boolean
-	public abstract boolean[][] PossibleMove();
+	public abstract boolean[][] PossibleMoves();
 	
 	// method possibleMove (testing)
-	public boolean possibleMove(Position position) {
-		return PossibleMove()[position.getRow()][position.getColumn()];
+	public boolean possibleMoves(Position position) {
+		return PossibleMoves()[position.getRow()][position.getColumn()];
 	}
 	
 	// method isThereAnyPossibleMove
 	public boolean isThereAnyPossibleMove() {
-		boolean[][] mat = PossibleMove();
+		boolean[][] mat = PossibleMoves();
 		
 		for (int i = 0; i <mat.length; i++) {
 			
