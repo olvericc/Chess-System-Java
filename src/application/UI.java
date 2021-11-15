@@ -31,12 +31,15 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 	
+<<<<<<< HEAD
 	// method clearScreen
 	public static void clearScreen() {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	}
 	
+=======
+>>>>>>> 2f046c9ddf784154722883818d63bd1265a05ece
 	// method readChessPosition
 	public static ChessPosition readChessPosition(Scanner sc) {
 		try {
