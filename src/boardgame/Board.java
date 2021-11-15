@@ -33,7 +33,7 @@ public class Board {
 
 	//method Piece1
 	public Piece piece(int row, int column) {
-		// exception
+		// defensive programming
 		if (!positionExists(row, column)) {
 			throw new BoardException("Position not on the board");
 		}
@@ -42,7 +42,7 @@ public class Board {
 	
 	// method Piece2
 	public Piece piece(Position position) {
-		// exception
+		// defensive programming
 		if (!positionExists(position)) {
 			throw new BoardException("Position not on the board");
 		}
@@ -50,7 +50,7 @@ public class Board {
 	}
 	
 	public void placePiece(Piece piece, Position position) {
-		// exception
+		// defensive programming
 		if (thereIsAPiece(position)) {
 			throw new BoardException("There is already a piece on position " + position);
 		}
@@ -70,7 +70,7 @@ public class Board {
 	
 	// method thereIsAPiece
 	public boolean thereIsAPiece(Position position) {
-		// exception
+		// defensive programming
 		if (!positionExists(position)) {
 			throw new BoardException("Position not on the board");
 		}
