@@ -15,7 +15,8 @@ public class Board {
 		// exception
 		if(rows < 1 || columns < 1) {
 			throw new BoardException("Error creating board: "
-					+ "there must be at least 1 row and 1 column");
+					+ "there must be at least 1 row and 1 column"
+					+ "please press 'ENTER' to continue... ");
 		}
 		this.rows = rows;
 		this.columns = columns;
@@ -35,7 +36,8 @@ public class Board {
 	public Piece piece(int row, int column) {
 		// defensive programming
 		if (!positionExists(row, column)) {
-			throw new BoardException("Position not on the board");
+			throw new BoardException("Position not on the board"
+									+ "please press 'ENTER' to continue... ");
 		}
 		return pieces[row][column];
 	}
@@ -44,7 +46,8 @@ public class Board {
 	public Piece piece(Position position) {
 		// defensive programming
 		if (!positionExists(position)) {
-			throw new BoardException("Position not on the board");
+			throw new BoardException("Position not on the board"
+									+ "please press 'ENTER' to continue... ");
 		}
 		return pieces[position.getRow()][position.getColumn()];
 	}
@@ -52,7 +55,8 @@ public class Board {
 	public void placePiece(Piece piece, Position position) {
 		// defensive programming
 		if (thereIsAPiece(position)) {
-			throw new BoardException("There is already a piece on position " + position);
+			throw new BoardException("There is already a piece on position " + position	
+									+ "please press 'ENTER' to continue... ");
 		}
 		pieces[position.getRow()][position.getColumn()] = piece;
 		piece.position = position;
@@ -62,7 +66,8 @@ public class Board {
 	public Piece removePiece(Position position) {
 		// defensive programming
 		if(!positionExists(position)) {
-			throw new BoardException("Position not on the board");
+			throw new BoardException("Position not on the board"
+									+ "please press 'ENTER' to continue... ");
 		}
 		if (piece(position) == null) {
 			return null;
@@ -87,7 +92,8 @@ public class Board {
 	public boolean thereIsAPiece(Position position) {
 		// defensive programming
 		if (!positionExists(position)) {
-			throw new BoardException("Position not on the board");
+			throw new BoardException("Position not on the board"
+									+ "please press 'ENTER' to continue... ");
 		}
 		return piece(position) != null;
 	}

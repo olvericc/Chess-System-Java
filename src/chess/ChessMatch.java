@@ -10,11 +10,24 @@ public class ChessMatch {
 
 	// class attributes
 	private Board board;
+	private int turn;
+	private Color currentPlayer;
 		
 	// pattern builder
 	public ChessMatch() {
 		board = new Board(8,8);
+		turn = 1;
+		currentPlayer = Color.WHITE;
 		initialSetup();
+	}
+	
+	// getters
+	public int getTurn() {
+		return turn;
+	}
+	
+	public Color getCurrentPlayer() {
+		return currentPlayer;
 	}
 	
 	// method getPiece
@@ -47,6 +60,7 @@ public class ChessMatch {
 		validateSourcePosition(source);
 		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
+		nextTurn();
 		// DOWNCASTING
 		return (ChessPiece)capturedPiece; 
 	}
@@ -63,10 +77,18 @@ public class ChessMatch {
 	private void validateSourcePosition(Position position) {
 		// defensive programming
 		if (!board.thereIsAPiece(position)) {
-			throw new ChessException("There is no piece on source position");
+			throw new ChessException("There is no piece on source position!"
+									+ " please press 'ENTER' to continue... ");
+			
+		}
+		// DOWNCASTING
+		if (currentPlayer != ((ChessPiece)board.piece(position)).getColor()) {
+			throw new ChessException("The choosen piece is not yours!"
+									+ " please press 'ENTER' to continue... ");
 		}
 		if (!board.piece(position).isThereAnyPossibleMove()) {
-			throw new ChessException("There is no possible move for the choosen piece");
+			throw new ChessException("There is no possible move for the choosen piece!"
+									+ " please press 'ENTER' to continue... ");
 		}
 	}
 	
@@ -74,7 +96,8 @@ public class ChessMatch {
 	private void validateTargetPosition(Position source, Position target) {
 		// defensive programming
 		if (!board.piece(source).possibleMoves(target)) {
-			throw new ChessException("The choosen piece can't move to target position");
+			throw new ChessException("The choosen piece can't move to target position! "
+									+ "please press 'ENTER' to continue... ");
 		}
 		
 	}
@@ -82,6 +105,14 @@ public class ChessMatch {
 	// method placeNewPiece
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
+	}
+	
+	// method NextTurn
+	private void nextTurn() {
+		turn ++;
+		currentPlayer = (currentPlayer == Color.WHITE) ? 
+			Color.BLACK :
+			Color.WHITE;
 	}
 	
 	// method initialSetup
