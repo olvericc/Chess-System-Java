@@ -32,7 +32,7 @@ public class Board {
 		return columns;
 	}
 
-	//method Piece1
+	//method Piece1()
 	public Piece piece(int row, int column) {
 		// defensive programming
 		if (!positionExists(row, column)) {
@@ -42,7 +42,7 @@ public class Board {
 		return pieces[row][column];
 	}
 	
-	// method Piece2
+	// method Piece2()
 	public Piece piece(Position position) {
 		// defensive programming
 		if (!positionExists(position)) {
@@ -52,6 +52,7 @@ public class Board {
 		return pieces[position.getRow()][position.getColumn()];
 	}
 	
+	// method placePiece()
 	public void placePiece(Piece piece, Position position) {
 		// defensive programming
 		if (thereIsAPiece(position)) {
@@ -62,7 +63,7 @@ public class Board {
 		piece.position = position;
 	}
 	
-	// method removePiece
+	// method removePiece()
 	public Piece removePiece(Position position) {
 		// defensive programming
 		if(!positionExists(position)) {
@@ -78,17 +79,17 @@ public class Board {
 		return aux;
 	}
 	
-	// auxiliar method
+	// auxiliar method positionExists()
 	private boolean positionExists(int row, int column) {
 		return row >= 0 && row < rows && column >= 0 && column < columns;
 	}
 	
-	// method positionExists
+	// method positionExists()
 	public boolean positionExists(Position position) {
 		return positionExists(position.getRow(), position.getColumn());
 	}
 	
-	// method thereIsAPiece
+	// method thereIsAPiece()
 	public boolean thereIsAPiece(Position position) {
 		// defensive programming
 		if (!positionExists(position)) {

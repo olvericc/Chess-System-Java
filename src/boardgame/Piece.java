@@ -20,15 +20,15 @@ public abstract class Piece {
 		return board;
 	}
 	
-	// method possibleMove boolean
+	// method possibleMoves() boolean
 	public abstract boolean[][] PossibleMoves();
 	
-	// method possibleMove (testing)
+	// method possibleMoves() (testing)
 	public boolean possibleMoves(Position position) {
 		return PossibleMoves()[position.getRow()][position.getColumn()];
 	}
 	
-	// method isThereAnyPossibleMove
+	// method isThereAnyPossibleMove()
 	public boolean isThereAnyPossibleMove() {
 		boolean[][] mat = PossibleMoves();
 		

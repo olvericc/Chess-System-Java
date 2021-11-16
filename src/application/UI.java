@@ -35,13 +35,13 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 	
-	// method clearScreen
+	// method clearScreen()
 	public static void clearScreen() {
 		System.out.print("\033[H\033[2J");
 		System.out.flush();
 	}
 	
-	// method readChessPosition
+	// method readChessPosition()
 	public static ChessPosition readChessPosition(Scanner sc) {
 		try {
 			String s = sc.nextLine();
@@ -54,17 +54,21 @@ public class UI {
 		}
 	}
 	
-	// method printMatch
+	// method printMatch()
 	public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
 		printBoard(chessMatch.getPieces());
 		System.out.println();
 		printCapturedPieces(captured);
-		System.out.println();
 		System.out.println("Turn: " + chessMatch.getTurn());
 		System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+		
+		if (chessMatch.getCheck()) {
+			System.out.println("YOU ARE IN CHECK!!!!");
+		}
+		
 	}
 	
-	// method printBoard
+	// method printBoard()
 	public static void printBoard(ChessPiece[][] pieces) {
 		for (int i = 0; i < pieces.length; i++) {
 				System.out.print((8 - i) + " ");
@@ -76,7 +80,7 @@ public class UI {
 		System.out.println("  a b c d e f g h ");
 	}
 	
-	// method printBoard, but with possibleMoves
+	// method printBoard(), but with possibleMoves
 	public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
 		for (int i = 0; i < pieces.length; i++) {
 				System.out.print((8 - i) + " ");
@@ -89,7 +93,7 @@ public class UI {
 	}
 
 	
-	// method printPiece
+	// method printPiece()
 	private static void printPiece(ChessPiece piece, boolean background) {
 		if (background){
 			System.out.print(ANSI_BLUE_BACKGROUND);
@@ -108,7 +112,7 @@ public class UI {
 		System.out.print(" ");
 	}
 	
-	// method PrintCapturedPieces
+	// method PrintCapturedPieces()
 	private static void printCapturedPieces(List<ChessPiece> captured) {
 		// black pieces
 		List<ChessPiece> white = captured.stream()
@@ -129,9 +133,7 @@ public class UI {
 		System.out.println(ANSI_RESET); // color finish	
 		
 		// captured black pieces
-		System.out.println("Captured pieces: ");
 		System.out.print("Black: ");
-		
 		// printing arrays
 		System.out.print(ANSI_YELLOW); // color start
 		System.out.println(Arrays.toString(black.toArray()));

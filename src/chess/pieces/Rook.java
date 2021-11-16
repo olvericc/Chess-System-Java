@@ -12,13 +12,13 @@ public class Rook extends ChessPiece {
 		super(board, color);
 	}
 
-	// method toString
+	// method toString()
 	@Override
 	public String toString() {
 		return "R";
 	}
 
-	// method PossibleMove
+	// method PossibleMoves()
 	@Override
 	public boolean[][] PossibleMoves() {
 		boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];

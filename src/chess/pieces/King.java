@@ -12,19 +12,19 @@ public class King extends ChessPiece {
 		super(board, color);
 	}
 
-	// method toString
+	// method toString()
 	@Override
 	public String toString() {
 		return "K";
 	}
 
-	// method CanMove
+	// method CanMove()
 	private boolean canMove(Position position) {
 		ChessPiece p = (ChessPiece) getBoard().piece(position);
 		return p == null || p.getColor() != getColor();
 	}
 
-	// method PossibleMove
+	// method PossibleMoves()
 	@Override
 	public boolean[][] PossibleMoves() {
 		boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];

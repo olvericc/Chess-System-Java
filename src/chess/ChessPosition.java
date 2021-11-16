@@ -21,7 +21,7 @@ public class ChessPosition {
 		this.row = row;
 	}
 
-	// getters and setters
+	// getters
 	public char getColumn() {
 		return column;
 	}
@@ -30,18 +30,18 @@ public class ChessPosition {
 		return row;
 	}
 
-	// method toPostion
+	// method toPostion()
 	protected Position toPosition() {
 		return new Position(8 - row, column - 'a');
 	}
 	
-	// method fromPosition
+	// method fromPosition()
 	protected static ChessPosition fromPosition(Position position) {
-		return new ChessPosition((char)('a' - position.getColumn()),
+		return new ChessPosition((char)('a' + position.getColumn()),
 				8 - position.getRow());
 	}
 
-	// 
+	// method toString()
 	@Override
 	public String toString() {
 		return "" + column 

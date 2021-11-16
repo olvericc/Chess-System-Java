@@ -20,12 +20,16 @@ public abstract class ChessPiece extends Piece {
 		this.color = color;
 	}
 
-	// getters and setters
+	// getters
 	public Color getColor() {
 		return color;
 	}
 	
-	// method IsThereOpponentPiece
+	public ChessPosition getChessPosition() {
+		return ChessPosition.fromPosition(position);
+	}
+	
+	// method IsThereOpponentPiece()
 	protected boolean isThereOpponentPiece(Position position) {
 		// DOWNCASTING
 		ChessPiece p =(ChessPiece) getBoard().piece(position);
