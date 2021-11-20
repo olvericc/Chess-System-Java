@@ -2,14 +2,19 @@ package chess.pieces;
 
 import boardgame.Board;
 import boardgame.Position;
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.Color;
 
 public class Pawn extends ChessPiece {
 
+	// class attributes
+	private ChessMatch chessMatch;
+	
 	// constructor with arguments
-	public Pawn(Board board, Color color) {
+	public Pawn(Board board, Color color, ChessMatch chessMatch) {
 		super(board, color);
+		this.chessMatch = chessMatch;
 	}
 
 	// method PossibleMoves()
@@ -58,6 +63,25 @@ public class Pawn extends ChessPiece {
 			}
 
 		}
+		
+		// #special move EnPassant WHITE PIECES
+		if (position.getRow() == 3) {
+			// left
+			Position left = new Position(position.getRow(), position.getColumn() - 1);
+			if (getBoard().positionExists(left) 
+					&& isThereOpponentPiece(left) 
+					&& getBoard().piece(left) == chessMatch.getEnPassantVulnerable()) {
+				mat[left.getRow() - 1][left.getColumn()] = true;
+			}
+			// right
+			Position right = new Position(position.getRow(), position.getColumn() + 1);
+			if (getBoard().positionExists(right) 
+					&& isThereOpponentPiece(right) 
+					&& getBoard().piece(right) == chessMatch.getEnPassantVulnerable()) {
+				mat[right.getRow() - 1][right.getColumn()] = true;
+			}
+		}
+		
 		// black pawn
 		else {
 			
@@ -94,6 +118,24 @@ public class Pawn extends ChessPiece {
 			if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 				mat[p.getRow()][p.getColumn()] = true;
 			}
+			
+			// #special move EnPassant BLACK PIECES
+			if (position.getRow() == 4) {
+				// left
+				Position left = new Position(position.getRow(), position.getColumn() - 1);
+				if (getBoard().positionExists(left) 
+						&& isThereOpponentPiece(left) 
+						&& getBoard().piece(left) == chessMatch.getEnPassantVulnerable()) {
+					mat[left.getRow() + 1][left.getColumn()] = true;
+				}
+				// right
+				Position right = new Position(position.getRow(), position.getColumn() + 1);
+				if (getBoard().positionExists(right) 
+						&& isThereOpponentPiece(right) 
+						&& getBoard().piece(right) == chessMatch.getEnPassantVulnerable()) {
+					mat[right.getRow() + 1][right.getColumn()] = true;
+				}
+			}
 		}
 		return mat;
 	}
@@ -102,6 +144,4 @@ public class Pawn extends ChessPiece {
 	public String toString() {
 		return "P";
 	}
-	
-
 }
